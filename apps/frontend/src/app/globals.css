@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 96%;
+  --foreground: 0 0% 5%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 5%;
+  --primary: 0 0% 5%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 91%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 0 0% 91%;
+  --muted-foreground: 0 0% 38%;
+  --accent: 0 0% 12%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 82%;
+  --input: 0 0% 82%;
+  --ring: 0 0% 5%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 96%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 0 0% 5%;
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 0 0% 66%;
+  --accent: 0 0% 92%;
+  --accent-foreground: 0 0% 5%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 0 0% 96%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
+    linear-gradient(0deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
+    linear-gradient(135deg, hsl(var(--foreground) / 0.06), transparent 30rem),
+    hsl(var(--background));
+  background-size: 28px 28px, 28px 28px, auto;
+  color: hsl(var(--foreground));
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.mono-visual {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(135deg, hsl(var(--foreground)) 0 12%, transparent 12% 100%),
+    repeating-linear-gradient(45deg, hsl(var(--foreground) / 0.95) 0 8px, transparent 8px 18px),
+    hsl(var(--background));
+}
+
+.mono-visual::before,
+.mono-visual::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  z-index: -1;
+  border: 1px solid hsl(var(--foreground));
+  background: hsl(var(--background));
+}
+
+.mono-visual::before {
+  right: 12%;
+  top: 14%;
+  width: 44%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+}
+
+.mono-visual::after {
+  bottom: 12%;
+  left: 10%;
+  width: 48%;
+  height: 22%;
+  transform: rotate(-8deg);
+}
