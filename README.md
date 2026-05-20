@@ -37,14 +37,28 @@ Seed script creates:
 
 ## Railway Deployment
 
-1. Push this repository to GitHub.
-2. Create a Railway PostgreSQL database.
-3. Deploy `apps/backend` as a Railway service.
-4. Set backend variables from `apps/backend/.env.example`.
-5. Run `npx prisma migrate deploy` in the backend service.
-6. Deploy `apps/frontend` as a Railway service.
-7. Set `NEXT_PUBLIC_API_URL` to the public backend URL.
-8. Set backend `CLIENT_URL` to the public frontend URL.
+Deploy three Railway services from this repository:
+
+1. PostgreSQL database
+2. Backend service with root directory `apps/backend`
+3. Frontend service with root directory `apps/frontend`
+
+Backend service:
+
+- Build command: `npm run build`
+- Start command: `npm start`
+- After adding `DATABASE_URL`, run: `npx prisma migrate deploy`
+
+Frontend service:
+
+- Build command: `npm run build`
+- Start command: `npm start`
+
+Update these once deployed:
+
+- Live frontend URL: `TODO`
+- Backend API URL: `TODO`
+- GitHub repository: `https://github.com/Bhadauria9z56/team-task-manager`
 
 ## Environment Variables
 
