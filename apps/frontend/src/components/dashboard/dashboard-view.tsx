@@ -20,15 +20,14 @@ export function DashboardView() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid overflow-hidden rounded-lg border border-foreground bg-card shadow-sm md:grid-cols-[1fr_260px]">
-        <div className="p-5">
-          <h2 className="text-3xl font-semibold tracking-normal">Dashboard</h2>
-          <p className="mt-1 text-sm text-muted-foreground">A quick view of workload, progress, and deadlines.</p>
-        </div>
-        <div className="mono-visual hidden min-h-32 border-l border-foreground md:block" />
+    <div className="space-y-8">
+      {/* Hero Section */}
+      <div className="rounded-xl border border-border/40 bg-gradient-to-br from-card to-card/50 p-8 shadow-sm backdrop-blur-sm">
+        <h1 className="text-4xl font-bold tracking-tight">Dashboard</h1>
+        <p className="mt-2 text-base text-muted-foreground">A quick view of workload, progress, and deadlines.</p>
       </div>
 
+      {/* Metrics Grid */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard label="Total tasks" value={data.totalTasks} icon={ListTodo} />
         <MetricCard label="In progress" value={data.tasksByStatus.IN_PROGRESS} icon={Clock3} />
@@ -36,10 +35,11 @@ export function DashboardView() {
         <MetricCard label="Overdue" value={data.overdueTasks.length} icon={AlertTriangle} />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Tasks per user</CardTitle>
+      {/* Two Column Section */}
+      <div className="grid gap-6 xl:grid-cols-2">
+        <Card className="border-border/60">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl">Tasks per user</CardTitle>
             <CardDescription>Assigned workload across your accessible projects.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -47,62 +47,63 @@ export function DashboardView() {
               data.tasksPerUser.map((item) => (
                 <div
                   key={item.user?.id ?? "unknown"}
-                  className="flex items-center justify-between gap-4 rounded-md border bg-background/60 p-3"
+                  className="flex items-center justify-between gap-4 rounded-lg border border-border/40 bg-gradient-to-r from-card to-background/50 p-4 transition-all hover:border-border/60 hover:shadow-sm"
                 >
-                  <div>
-                    <p className="font-medium">{item.user?.name ?? "Unassigned"}</p>
-                    <p className="text-sm text-muted-foreground">{item.user?.email}</p>
+                  <div className="min-w-0">
+                    <p className="font-semibold truncate">{item.user?.name ?? "Unassigned"}</p>
+                    <p className="text-xs text-muted-foreground truncate">{item.user?.email}</p>
                   </div>
-                  <Badge variant="info">{item.total} tasks</Badge>
+                  <Badge variant="info" className="flex-shrink-0">{item.total} tasks</Badge>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-muted-foreground">No assigned work yet.</p>
+              <p className="text-sm text-muted-foreground py-4 text-center">No assigned work yet.</p>
             )}
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Overdue tasks</CardTitle>
+        <Card className="border-border/60">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl">Overdue tasks</CardTitle>
             <CardDescription>Tasks past due and not marked done.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {data.overdueTasks.length ? (
               data.overdueTasks.map((task) => (
-                <div key={task.id} className="rounded-md border border-destructive/30 bg-destructive/5 p-3">
+                <div key={task.id} className="rounded-lg border border-destructive/20 bg-gradient-to-r from-destructive/5 to-background p-4 hover:border-destructive/30 transition-all">
                   <div className="flex items-center justify-between gap-3">
-                    <p className="font-medium">{task.title}</p>
-                    <Badge variant="danger">{formatDate(task.dueDate)}</Badge>
+                    <p className="font-semibold line-clamp-1">{task.title}</p>
+                    <Badge variant="danger" className="flex-shrink-0">{formatDate(task.dueDate)}</Badge>
                   </div>
-                  <p className="mt-1 text-sm text-muted-foreground">{task.assignedTo?.name ?? "Unassigned"}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">{task.assignedTo?.name ?? "Unassigned"}</p>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-muted-foreground">No overdue tasks. Nice and tidy.</p>
+              <p className="text-sm text-muted-foreground py-4 text-center">No overdue tasks. Nice and tidy.</p>
             )}
           </CardContent>
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent activity</CardTitle>
+      {/* Recent Activity */}
+      <Card className="border-border/60">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-xl">Recent activity</CardTitle>
           <CardDescription>Latest project and task changes.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
           {data.recentActivity.length ? (
             data.recentActivity.map((activity) => (
-              <div key={activity.id} className="flex items-center justify-between gap-4 rounded-md border bg-background/60 p-3">
-                <div>
-                  <p className="font-medium">{activity.message}</p>
-                  <p className="text-sm text-muted-foreground">by {activity.user.name}</p>
+              <div key={activity.id} className="flex items-center justify-between gap-4 rounded-lg border border-border/40 bg-gradient-to-r from-card to-background/30 p-4 transition-all hover:border-border/60 hover:shadow-sm">
+                <div className="min-w-0">
+                  <p className="font-medium truncate">{activity.message}</p>
+                  <p className="text-xs text-muted-foreground">by {activity.user.name}</p>
                 </div>
-                <span className="text-xs text-muted-foreground">{formatDate(activity.createdAt)}</span>
+                <span className="text-xs text-muted-foreground flex-shrink-0">{formatDate(activity.createdAt)}</span>
               </div>
             ))
           ) : (
-            <p className="text-sm text-muted-foreground">Activity will appear here as your team works.</p>
+            <p className="text-sm text-muted-foreground py-4 text-center">Activity will appear here as your team works.</p>
           )}
         </CardContent>
       </Card>
