@@ -50,11 +50,9 @@
 body {
   min-height: 100vh;
   background:
-    linear-gradient(90deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
-    linear-gradient(0deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
-    linear-gradient(135deg, hsl(var(--foreground) / 0.06), transparent 30rem),
+    radial-gradient(circle at 100% 0%, hsl(var(--foreground) / 0.04), transparent 40%),
+    radial-gradient(circle at 0% 100%, hsl(var(--foreground) / 0.04), transparent 40%),
     hsl(var(--background));
-  background-size: 28px 28px, 28px 28px, auto;
   color: hsl(var(--foreground));
 }
 
@@ -70,10 +68,8 @@ select {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background:
-    linear-gradient(135deg, hsl(var(--foreground)) 0 12%, transparent 12% 100%),
-    repeating-linear-gradient(45deg, hsl(var(--foreground) / 0.95) 0 8px, transparent 8px 18px),
-    hsl(var(--background));
+  background: linear-gradient(135deg, hsl(var(--foreground) / 0.04), transparent 50%);
+  border-radius: 0.5rem;
 }
 
 .mono-visual::before,
@@ -82,22 +78,25 @@ select {
   position: absolute;
   inset: auto;
   z-index: -1;
-  border: 1px solid hsl(var(--foreground));
-  background: hsl(var(--background));
+  opacity: 0.6;
 }
 
 .mono-visual::before {
-  right: 12%;
-  top: 14%;
-  width: 44%;
-  aspect-ratio: 1;
-  border-radius: 999px;
+  right: -20%;
+  top: -30%;
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(circle, hsl(var(--foreground) / 0.08), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
 }
 
 .mono-visual::after {
-  bottom: 12%;
-  left: 10%;
-  width: 48%;
-  height: 22%;
-  transform: rotate(-8deg);
+  bottom: -40%;
+  left: -10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, hsl(var(--foreground) / 0.06), transparent 70%);
+  border-radius: 50%;
+  filter: blur(50px);
 }

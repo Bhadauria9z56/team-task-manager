@@ -31,10 +31,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <AuthGuard>
       <div className="min-h-screen">
-        <aside className="fixed inset-y-0 left-0 hidden w-72 border-r border-foreground bg-foreground p-5 text-background shadow-2xl shadow-black/20 lg:block">
-          <div className="mono-visual mb-8 min-h-40 rounded-lg border border-background/70 p-4 text-background">
-            <p className="relative z-10 text-xs font-medium uppercase text-background/70">Workspace</p>
-            <h1 className="relative z-10 mt-2 max-w-40 text-2xl font-semibold leading-tight tracking-normal">
+        <aside className="fixed inset-y-0 left-0 hidden w-72 border-r border-border/40 bg-card/50 backdrop-blur-sm p-6 shadow-sm lg:block">
+          <div className="mb-8 rounded-xl border border-border/50 bg-gradient-to-br from-primary/5 to-primary/0 p-6 backdrop-blur-sm">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Workspace</p>
+            <h1 className="mt-3 text-2xl font-bold leading-tight tracking-tight">
               Team Task Manager
             </h1>
           </div>
@@ -47,10 +47,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 rounded-md border px-3 py-2.5 text-sm font-medium transition-colors",
+                    "flex items-center gap-3 rounded-lg border px-4 py-3 text-sm font-medium transition-all",
                     active
-                      ? "border-background bg-background text-foreground"
-                      : "border-background/20 text-background/70 hover:border-background/60 hover:text-background"
+                      ? "border-primary/30 bg-primary/5 text-foreground shadow-sm"
+                      : "border-border/30 text-muted-foreground hover:border-border/60 hover:bg-card/60 hover:text-foreground"
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -62,10 +62,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </aside>
 
         <div className="lg:pl-72">
-          <header className="sticky top-0 z-10 flex min-h-16 items-center justify-between gap-4 border-b bg-background/90 px-4 py-3 backdrop-blur md:px-8">
+          <header className="sticky top-0 z-10 flex min-h-16 items-center justify-between gap-4 border-b border-border/40 bg-background/70 backdrop-blur-md px-4 py-3 md:px-8">
             <div>
-              <p className="text-xs font-medium uppercase text-muted-foreground">Signed in as</p>
-              <p className="text-sm font-medium">{user?.name}</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Signed in as</p>
+              <p className="text-sm font-semibold text-foreground">{user?.name}</p>
             </div>
             <nav className="flex items-center gap-1 lg:hidden">
               {navItems.map((item) => {
