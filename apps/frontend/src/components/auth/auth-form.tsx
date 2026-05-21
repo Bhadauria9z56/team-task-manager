@@ -52,8 +52,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const isSignup = mode === "signup";
 
   return (
-    <main className="grid min-h-screen place-items-center p-6 lg:grid-cols-[1fr_440px] lg:gap-10 lg:p-10">
-      <div className="mono-visual hidden min-h-[calc(100vh-5rem)] w-full rounded-lg border border-foreground shadow-2xl shadow-black/20 lg:block" />
+    <main className="grid min-h-screen place-items-center p-6 lg:p-10">
       <Card className="w-full max-w-md border-foreground bg-card shadow-2xl shadow-black/10">
         <CardHeader>
           <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-lg bg-foreground text-lg font-semibold text-background">
